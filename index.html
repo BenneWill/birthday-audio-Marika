@@ -2,26 +2,38 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Happy Birthday!</title>
+    <title>Geburtstagsnachricht</title>
     <style>
-        body { font-family: sans-serif; text-align: center; padding-top: 50px; }
-        button { padding: 20px 40px; font-size: 20px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 10px; }
+        body { font-family: sans-serif; text-align: center; padding-top: 50px; background: #fdf2f8; }
+        button { padding: 20px 40px; font-size: 1.2rem; cursor: pointer; background: #db2777; color: white; border: none; border-radius: 50px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { color: #9d174d; }
     </style>
 </head>
 <body>
-    <h2>Happy Birthday! 🎂</h2>
+    <h1 id="greeting">Happy Birthday! 🎂</h1>
+    <p>Klicke unten, um die Sprachnachricht zu hören:</p>
     
-    <button onclick="playAudio()">Klicken für die Nachricht 🎵</button>
+    <button onclick="playAudio()">Nachricht abspielen 🎵</button>
 
-    <audio id="myAudio">
-        <source src="Nicolas_birthday_voice_2.mp3" type="audio/mpeg">
-        Ihr Browser unterstützt das Audio-Element nicht.
-    </audio>
+    <audio id="myAudio"></audio>
 
     <script>
+        // Erkennt den Namen aus dem Link (z.B. ?who=nicolas)
+        const params = new URLSearchParams(window.location.search);
+        const person = params.get('who');
+        const audio = document.getElementById('myAudio');
+        const greeting = document.getElementById('greeting');
+
+        if (person) {
+            // Setzt den Dateinamen basierend auf dem Link
+            audio.src = person + ".mp3";
+            greeting.innerText = "Nachricht von " + person + " ✨";
+        } else {
+            greeting.innerText = "Fehler: Kein Name gefunden!";
+        }
+
         function playAudio() {
-            var audio = document.getElementById("myAudio");
-            audio.play();
+            audio.play().catch(e => alert("Bitte zuerst auf die Seite tippen!"));
         }
     </script>
 </body>
