@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>Happy Birthday!</title>
-  </head>
-  <body>
-    <h2>Happy Birthday! 🎉</h2>
-    <audio autoplay>
-      <source src="Nicolas_birthday_voice_2.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-  </body>
-</html>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding-top: 50px; }
+        button { padding: 20px 40px; font-size: 20px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Happy Birthday! 🎂</h2>
+    
+    <button onclick="playAudio()">Klicken für die Nachricht 🎵</button>
 
+    <audio id="myAudio">
+        <source src="Nicolas_birthday_voice_2.mp3" type="audio/mpeg">
+        Ihr Browser unterstützt das Audio-Element nicht.
+    </audio>
+
+    <script>
+        function playAudio() {
+            var audio = document.getElementById("myAudio");
+            audio.play();
+        }
+    </script>
+</body>
+</html>
