@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Geburtstagsnachricht</title>
+    <title>Birthday Message</title>
     <style>
         body { font-family: sans-serif; text-align: center; padding-top: 50px; background: #fdf2f8; }
         button { padding: 20px 40px; font-size: 1.2rem; cursor: pointer; background: #db2777; color: white; border: none; border-radius: 50px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
@@ -11,29 +11,28 @@
 </head>
 <body>
     <h1 id="greeting">Happy Birthday! 🎂</h1>
-    <p>Klicke unten, um die Sprachnachricht zu hören:</p>
+    <p>Please click below to listen to your message:</p>
     
-    <button onclick="playAudio()">Nachricht abspielen 🎵</button>
+    <button onclick="playAudio()">Play Message 🎵</button>
 
     <audio id="myAudio"></audio>
 
     <script>
-        // Erkennt den Namen aus dem Link (z.B. ?who=nicolas)
         const params = new URLSearchParams(window.location.search);
         const person = params.get('who');
         const audio = document.getElementById('myAudio');
         const greeting = document.getElementById('greeting');
 
         if (person) {
-            // Setzt den Dateinamen basierend auf dem Link
+            // This links to your file, e.g., "nicolas.mp3"
             audio.src = person + ".mp3";
-            greeting.innerText = "Nachricht von " + person + " ✨";
+            greeting.innerText = "Message from " + person.charAt(0).toUpperCase() + person.slice(1) + " ✨";
         } else {
-            greeting.innerText = "Fehler: Kein Name gefunden!";
+            greeting.innerText = "Error: No name found!";
         }
 
         function playAudio() {
-            audio.play().catch(e => alert("Bitte zuerst auf die Seite tippen!"));
+            audio.play().catch(e => alert("Please tap the screen first to allow audio!"));
         }
     </script>
 </body>
